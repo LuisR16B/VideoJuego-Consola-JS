@@ -108,7 +108,7 @@ class Guerrero extends Personaje{
     super(nombre, vida, danho, defensa, velocidad, habilidadesEspeciales);
     this.array_de_armas = array_de_armas;
   }
-  atacar_con_arma() {
+  atacarConArma() {
     return this.array_de_armas[Math.floor(Math.random() * this.array_de_armas.length)];
   }
   saludar(){
@@ -144,7 +144,7 @@ class Mago extends Personaje{
     super(nombre, vida, danho, defensa, velocidad, habilidadesEspeciales);
     this.array_de_hechizos = array_de_hechizos;
   }
-  atacar_con_hechizo() {
+  atacarConHechizo() {
     return this.array_de_hechizos[Math.floor(Math.random() * this.array_de_hechizos.length)];
   }
   saludar(){
