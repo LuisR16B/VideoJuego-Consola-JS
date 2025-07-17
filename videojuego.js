@@ -216,18 +216,25 @@ class Vampiro extends Personaje{
     super(nombre, vida, danho, defensa, velocidad, habilidadesEspeciales);
     this.array_de_ataque = array_de_ataque;
   }
+  atacar(){
+    this.vida += (this.danho * 0.10);
+    super.atacar();
+  }
   saludar(){
     super.saludar();
     console.log(this.saludo += " vampiro.");
   }
   ataque(){
-    this.vida += Math.floor(Math.random() * (this.vida / 2));
-    return this.array_de_ataque[Math.floor(Math.random() * this.array_de_ataque.length)];
+    let random = Math.floor(Math.random() * this.array_de_ataque.length)
+    this.vida += (this.array_de_ataque[random].danho * 0.10);
+    return this.array_de_ataque[random];
   }
   habilidadEspeciales() {
+    let random = Math.floor(Math.random() * this.habilidadesEspeciales.length);
     if(this.ataqueUsado === 1){
       this.ataqueUsado = 0;
-      return this.habilidadesEspeciales[Math.floor(Math.random() * this.habilidadesEspeciales.length)];
+      this.vida += (this.habilidadesEspeciales[random].danho * 0.10);
+      return this.habilidadesEspeciales[random];
     }else{
       return this.ataqueUsado;
     }
@@ -269,6 +276,7 @@ function iniciarJuego(personajes) {
     console.log(`\n* * * Ronda ${ronda++} * * *`);
     // Funcion para organizar el turno de los personajes
     turnoPersonajeAleatoreo(personajes).forEach(personaje => {
+      console.log(personaje.vida+" - "+ personaje.nombre)
       // Validar si el personaje esta vivo
       if(personaje.vida <= 0) return;
       //validar si se tropieza y pierde el turno
